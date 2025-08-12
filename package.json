@@ -1,0 +1,26 @@
+{
+  "name": "serverless-fiap-test",
+  "version": "1.0.0",
+  "description": "Serverless AWS Lambda with Clean Architecture",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "deploy:dev": "serverless deploy --stage dev",
+    "deploy:prod": "serverless deploy --stage prod",
+    "remove": "serverless remove",
+    "logs": "serverless logs -f hello",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "serverless",
+    "aws",
+    "lambda",
+    "nodejs",
+    "clean-architecture"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^3.38.0"
+  }
+}
