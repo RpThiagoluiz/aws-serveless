@@ -27,6 +27,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.FIAP_POS_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.FIAP_POS_AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.FIAP_POS_AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.FIAP_POS_AWS_REGION }}
 
       - name: Install Serverless Framework
