@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
-  profile: fiap-pos
+  # profile: fiap-pos
   stage: ${opt:stage, 'dev'}
   environment:
     NODE_ENV: ${opt:stage, 'dev'}
