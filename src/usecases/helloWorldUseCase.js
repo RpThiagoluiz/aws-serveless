@@ -4,6 +4,7 @@
  */
 class HelloWorldUseCase {
   /**
+   * teste
    * Execute the hello world logic
    * @returns {Object} Hello world data
    */
