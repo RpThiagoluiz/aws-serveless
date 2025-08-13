@@ -4,14 +4,13 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: us-east-1
-  # profile: fiap-pos
   stage: ${opt:stage, 'dev'}
   environment:
     NODE_ENV: ${opt:stage, 'dev'}
     AWS_ROLE_ARN: ${env:AWS_ROLE_ARN}
-  roleArn: ${env:AWS_ROLE_ARN}
-  # Use a role IAM existente do AWS Academy
-  #: arn:aws:iam::362400434396:role/LabRole
+  iam:
+    role: ${env:AWS_ROLE_ARN}
+
 functions:
   hello:
     handler: handler.hello
