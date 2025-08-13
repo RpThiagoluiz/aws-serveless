@@ -8,7 +8,10 @@ provider:
   stage: ${opt:stage, 'dev'}
   environment:
     NODE_ENV: ${opt:stage, 'dev'}
-
+    AWS_ROLE_ARN: ${env:AWS_ROLE_ARN}
+  roleArn: ${env:AWS_ROLE_ARN}
+  # Use a role IAM existente do AWS Academy
+  #: arn:aws:iam::362400434396:role/LabRole
 functions:
   hello:
     handler: handler.hello
