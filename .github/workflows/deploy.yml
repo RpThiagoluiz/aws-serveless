@@ -35,3 +35,5 @@ jobs:
 
       - name: Deploy with Serverless
         run: sls deploy --stage prod
+        env:
+          AWS_ROLE_ARN: ${{ secrets.FIAP_POS_AWS_ROLE_ARN }}
