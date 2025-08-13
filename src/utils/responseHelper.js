@@ -2,7 +2,7 @@
  * Response utility for standardizing API responses
  */
 class ResponseHelper {
-  static success(data = null, message = 'Success', statusCode = 200) {
+  static success(data = null, message = 'Success Thiago', statusCode = 200) {
     return {
       statusCode,
       headers: {
