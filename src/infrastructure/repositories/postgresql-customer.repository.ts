@@ -14,7 +14,9 @@ export class PostgreSQLCustomerRepository implements ICustomerRepository {
       database: process.env['DB_NAME'] || 'customers_db',
       user: process.env['DB_USER'] || 'postgres',
       password: process.env['DB_PASSWORD'] || 'password',
-      ssl: false, // AWS RDS em ambiente de desenvolvimento
+      ssl: {
+        rejectUnauthorized: false // Para RDS público
+      },
       max: 2, // Limitar conexões para Lambda
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 2000,
