@@ -86,3 +86,8 @@ jspm_packages/
 # OS
 .DS_Store
 Thumbs.db
+
+# Build output
+dist/
+*.d.ts
+*.js.map

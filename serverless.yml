@@ -5,6 +5,10 @@ frameworkVersion: '3'
 plugins:
   - serverless-plugin-typescript
 
+custom:
+  serverless-plugin-typescript:
+    tsConfigFileLocation: './tsconfig.json'
+
 provider:
   name: aws
   runtime: nodejs18.x
@@ -17,14 +21,14 @@ provider:
     STAGE: ${self:provider.stage}
     REGION: ${self:provider.region}
     # RDS PostgreSQL connection (from secrets)
-    DB_HOST: ${env:DB_HOST}
-    DB_NAME: ${env:DB_NAME}
-    DB_USER: ${env:DB_USER}
-    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_HOST: ${env:DB_HOST, 'localhost'}
+    DB_NAME: ${env:DB_NAME, 'customers_db'}
+    DB_USER: ${env:DB_USER, 'postgres'}
+    DB_PASSWORD: ${env:DB_PASSWORD, 'password'}
 
 functions:
   getCustomer:
-    handler: dist/handler.getCustomer
+    handler: src/handler.getCustomer
     description: 'Get customer by CPF from PostgreSQL RDS'
     events:
       - http:
