@@ -1,9 +1,10 @@
-name: Deploy Lambda
+name: Deploy Customer Lambda
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -33,7 +34,12 @@ jobs:
       - name: Install Serverless Framework
         run: npm install -g serverless
 
-      - name: Deploy with Serverless
+      - name: Deploy Customer Lambda
         run: sls deploy --stage prod
         env:
           AWS_ROLE_ARN: ${{ secrets.FIAP_POS_AWS_ROLE_ARN }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
