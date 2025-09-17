@@ -1,70 +1,67 @@
-# Serverless AWS Lambda with Clean Architecture
+# Serverless AWS Lambda - Customer Service
 
-Este projeto implementa uma API serverless simples usando AWS Lambda com clean architecture.
+This repository contains a Lambda function for retrieving customer data from DynamoDB.
 
-## Estrutura do Projeto
+## Architecture
+
+- **Function**: `getCustomer` - Retrieves customer data by CPF
+- **Database**: DynamoDB table `customers-{stage}`
+- **Runtime**: Node.js 18.x
+
+## Structure
 
 ```
-├── src/
-│   ├── controllers/        # Controladores HTTP
-│   │   └── helloWorldController.js
-│   ├── usecases/          # Casos de uso (regras de negócio)
-│   │   └── helloWorldUseCase.js
-│   └── utils/             # Utilitários
-│       └── responseHelper.js
-├── handler.js             # Entry point das funções Lambda
-├── serverless.yml         # Configuração do Serverless Framework
-├── package.json          # Dependências do projeto
-└── README.md
+src/
+  handlers/
+    getCustomer.js       # Lambda handler
+  usecases/
+    getCustomerUseCase.js # Business logic
 ```
 
-## Endpoints
+## Setup
 
-- `GET /hello` - Retorna uma mensagem de hello world
-
-## Deploy
-
-### Configuração das Secrets no GitHub
-
-Configure as seguintes secrets no seu repositório GitHub:
-
-1. `AWS_ACCESS_KEY_ID` - Sua AWS Access Key ID
-2. `AWS_SECRET_ACCESS_KEY` - Sua AWS Secret Access Key
-3. `AWS_REGION` - Região AWS (ex: us-east-1)
-
-### Deploy via GitHub Actions
-
-O deploy é feito automaticamente quando você faz push na branch `main`.
-
-### Deploy Manual
+1. Install dependencies:
 
 ```bash
-# Instalar dependências
 npm install
+```
 
-# Deploy para dev
+2. Set environment variables:
+
+- `AWS_ROLE_ARN`: IAM role ARN for Serverless Framework
+
+3. Deploy:
+
+```bash
+# Deploy to dev
 npm run deploy:dev
 
-# Deploy para produção
+# Deploy to prod
 npm run deploy:prod
 ```
 
-## Testando Local
+## Usage
 
-Para testar localmente, você pode usar o Serverless Framework:
+The Lambda function is invoked directly (no HTTP events) and expects:
 
-```bash
-# Instalar Serverless Framework
-npm install -g serverless
-
-# Invocar função localmente
-serverless invoke local -f hello
+```json
+{
+  "cpf": "12345678901"
+}
 ```
 
-## Logs
+Returns:
 
-Para ver os logs da função:
-
-```bash
-npm run logs
+```json
+{
+  "statusCode": 200,
+  "success": true,
+  "data": {
+    "cpf": "12345678901",
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  }
+}
 ```
