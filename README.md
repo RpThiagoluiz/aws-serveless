@@ -173,9 +173,19 @@ aws lambda list-functions --query 'Functions[?starts_with(FunctionName, `serverl
 
 ### 3. Obter URL da API
 
+A URL completa será algo como:
+```
+https://abc123def.execute-api.us-east-1.amazonaws.com/prod/customers
+```
+
+**⚠️ IMPORTANTE:** Sempre incluir `/customers` no final da URL base!
+
 ```bash
-# Após deploy, verificar output ou no AWS Console API Gateway
-sls info --stage prod --config serverless-prod.yml
+# ❌ ERRADO - Missing Authentication Token
+https://abc123def.execute-api.us-east-1.amazonaws.com/prod?cpf=12345678901
+
+# ✅ CORRETO - Inclui /customers
+https://abc123def.execute-api.us-east-1.amazonaws.com/prod/customers?cpf=12345678901
 ```
 
 ### 4. Testar Endpoints
